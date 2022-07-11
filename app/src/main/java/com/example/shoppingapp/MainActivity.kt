@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.example.shoppingapp.Adapters.CategoriesAdapter
 import com.example.shoppingapp.Adapters.ItemsAdapter
 import com.example.shoppingapp.DataModels.CategoriesModel
+import com.example.shoppingapp.DataModels.Filters
 import com.example.shoppingapp.DataModels.ItemsModel
 import com.example.shoppingapp.databinding.ActivityMainBinding
+import com.google.android.gms.analytics.ecommerce.Product
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var itemsAdapter: ItemsAdapter
 
+    var selectedProductsList = mutableListOf<Product>()
+    val selectedCategoriesList = mutableListOf<Filters.Category>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +37,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     private fun initItems(){
         itemsAdapter = ItemsAdapter().apply {
+
             populateItemsData()
             updateAll(itemsList)
 
@@ -44,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             GridLayoutManager(this,2,VERTICAL,false)
         binding.rvItems.adapter = itemsAdapter
     }
+
     private fun initCategories(){
         categoriesAdapter = CategoriesAdapter().apply {
             populateCategoriesData()
@@ -55,13 +62,23 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, HORIZONTAL,false)
         binding.rvCategories.adapter = categoriesAdapter
     }
+
+
+
     private fun populateItemsData(){
+
+
         itemsList.add(
             ItemsModel(
                 "witeli maika",
                 245,
                 "bebruli",
-                R.drawable.ic_baseline_agriculture_24
+                R.drawable.ic_baseline_agriculture_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
+
+
             )
         )
 
@@ -70,7 +87,11 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_30fps_select_24
+                R.drawable.ic_baseline_30fps_select_24,
+                listOf(
+                    Filters.Category.SALE
+                )
+
             )
         )
 
@@ -79,7 +100,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_3p_24
+                R.drawable.ic_baseline_3p_24,
+                listOf(
+                    Filters.Category.SUMMER
+                )
             )
         )
 
@@ -88,42 +112,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                android.R.drawable.ic_input_add
-            )
-        )
-        itemsList.add(
-            ItemsModel(
-                "witeli maika",
-                245,
-                "bebruli",
-                R.drawable.ic_baseline_agriculture_24
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                23,
-                "bebruli",
-                R.drawable.ic_baseline_30fps_select_24
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                23,
-                "bebruli",
-                R.drawable.ic_baseline_3p_24
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                23,
-                "bebruli",
-                android.R.drawable.ic_input_add
+                android.R.drawable.ic_input_add,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
         itemsList.add(
@@ -131,7 +123,10 @@ class MainActivity : AppCompatActivity() {
                 "witeli maika",
                 245,
                 "bebruli",
-                R.drawable.ic_baseline_agriculture_24
+                R.drawable.ic_baseline_agriculture_24,
+                listOf(
+                    Filters.Category.SUMMER
+                )
             )
         )
 
@@ -140,7 +135,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_30fps_select_24
+                R.drawable.ic_baseline_30fps_select_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -149,7 +147,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_3p_24
+                R.drawable.ic_baseline_3p_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -158,7 +159,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                android.R.drawable.ic_input_add
+                android.R.drawable.ic_input_add,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
         itemsList.add(
@@ -166,7 +170,10 @@ class MainActivity : AppCompatActivity() {
                 "witeli maika",
                 245,
                 "bebruli",
-                R.drawable.ic_baseline_agriculture_24
+                R.drawable.ic_baseline_agriculture_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -175,7 +182,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_30fps_select_24
+                R.drawable.ic_baseline_30fps_select_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -184,7 +194,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_3p_24
+                R.drawable.ic_baseline_3p_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -193,7 +206,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                android.R.drawable.ic_input_add
+                android.R.drawable.ic_input_add,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
         itemsList.add(
@@ -201,7 +217,10 @@ class MainActivity : AppCompatActivity() {
                 "witeli maika",
                 245,
                 "bebruli",
-                R.drawable.ic_baseline_agriculture_24
+                R.drawable.ic_baseline_agriculture_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -210,7 +229,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_30fps_select_24
+                R.drawable.ic_baseline_30fps_select_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -219,7 +241,10 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                R.drawable.ic_baseline_3p_24
+                R.drawable.ic_baseline_3p_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
 
@@ -228,7 +253,57 @@ class MainActivity : AppCompatActivity() {
                 "lurji jempri",
                 23,
                 "bebruli",
-                android.R.drawable.ic_input_add
+                android.R.drawable.ic_input_add,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
+            )
+        )
+        itemsList.add(
+            ItemsModel(
+                "witeli maika",
+                245,
+                "bebruli",
+                R.drawable.ic_baseline_agriculture_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
+            )
+        )
+
+        itemsList.add(
+            ItemsModel(
+                "lurji jempri",
+                23,
+                "bebruli",
+                R.drawable.ic_baseline_30fps_select_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
+            )
+        )
+
+        itemsList.add(
+            ItemsModel(
+                "lurji jempri",
+                23,
+                "bebruli",
+                R.drawable.ic_baseline_3p_24,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
+            )
+        )
+
+        itemsList.add(
+            ItemsModel(
+                "lurji jempri",
+                23,
+                "bebruli",
+                android.R.drawable.ic_input_add,
+                listOf(
+                    Filters.Category.BOTTOM
+                )
             )
         )
     }
@@ -253,13 +328,13 @@ class MainActivity : AppCompatActivity() {
 
         categoriesList.add(
             CategoriesModel(
-                "Category1",
+                "pants",
             )
         )
 
         categoriesList.add(
             CategoriesModel(
-                "Category2",
+                "tshirts",
             )
         )
         categoriesList.add(

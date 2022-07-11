@@ -4,5 +4,6 @@ data class ItemsModel(
     var title:String,
     var price:Int,
     var categoryType:String,
-    var Image:Int
+    var Image:Int,
+    val category: List<Filters.Category>
 )
