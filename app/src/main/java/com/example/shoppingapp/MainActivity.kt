@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-
-
     private fun populateItemsData(){
         itemsList.add(
             ItemsModel(
