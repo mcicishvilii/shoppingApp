@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingapp.DataModels.CategoriesModel
 import com.example.shoppingapp.DataModels.ItemsModel
+import com.example.shoppingapp.databinding.CategoriesLayoutBinding
 import com.example.shoppingapp.databinding.ItemsLayoutBinding
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder>() {
@@ -14,7 +15,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val binding =
-            ItemsLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CategoriesLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UsersViewHolder(binding)
     }
 
@@ -31,14 +32,14 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder
     fun updateAll(list: List<CategoriesModel>) {
         categoriesList.clear()
         categoriesList.addAll(list)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0,categoriesList.size)
     }
 
 
-    class UsersViewHolder(private val binding: ItemsLayoutBinding) :
+    class UsersViewHolder(private val binding: CategoriesLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(categoriesModel: CategoriesModel) {
-
+            binding.tvCategory.text = categoriesModel.categoryName
         }
     }
 }

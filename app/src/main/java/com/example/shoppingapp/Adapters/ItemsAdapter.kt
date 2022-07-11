@@ -29,7 +29,7 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.UsersViewHolder>() {
     fun updateAll(list: List<ItemsModel>) {
         itemsList.clear()
         itemsList.addAll(list)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0,itemsList.size)
     }
 
 
