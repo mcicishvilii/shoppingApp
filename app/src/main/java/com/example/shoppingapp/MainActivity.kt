@@ -2,6 +2,7 @@ package com.example.shoppingapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
@@ -53,6 +54,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun initCategories(){
         categoriesAdapter = CategoriesAdapter().apply {
+
+            setOnItemCLickListener { category: CategoriesModel, i: Int ->
+
+//                if(category.categoryName == "misho")
+
+                Toast.makeText(this@MainActivity, "${category.categoryName} deleted", Toast.LENGTH_SHORT).show()
+                populateItemsData()
+
+            }
+
             populateCategoriesData()
             updateAll(categoriesList)
 

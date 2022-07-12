@@ -11,6 +11,7 @@ import com.example.shoppingapp.databinding.ItemsLayoutBinding
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder>() {
 
     private val categoriesList = mutableListOf<CategoriesModel>()
+    private lateinit var itemClickListener: (CategoriesModel,Int) -> Unit
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
@@ -21,6 +22,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bindData(categoriesList[position])
+
 
     }
 
@@ -36,10 +38,19 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder
     }
 
 
-    class UsersViewHolder(private val binding: CategoriesLayoutBinding) :
+    fun setOnItemCLickListener(clickListener: (CategoriesModel,Int) -> Unit) {
+        itemClickListener = clickListener
+    }
+
+
+    inner class UsersViewHolder(private val binding: CategoriesLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(categoriesModel: CategoriesModel) {
             binding.tvCategory.text = categoriesModel.categoryName
+
+            binding.tvCategory.setOnClickListener {
+                itemClickListener.invoke(categoriesModel,adapterPosition)
+            }
         }
     }
 }
