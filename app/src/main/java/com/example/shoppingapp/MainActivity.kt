@@ -41,10 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initItems(list: MutableList<ItemsModel>){
         itemsAdapter = ItemsAdapter().apply {
-
             populateItemsData()
             updateAll(list)
-
         }
 
         binding.rvItems.layoutManager =
