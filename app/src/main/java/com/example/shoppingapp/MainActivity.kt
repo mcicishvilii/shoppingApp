@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity()
     private lateinit var binding: ActivityMainBinding
     private val itemsList = mutableListOf<ItemsModel>()
     private val categoriesList = mutableListOf<CategoriesModel>()
-    private val filteredList = mutableListOf<String>()
 
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var itemsAdapter: ItemsAdapter
@@ -37,8 +36,6 @@ class MainActivity : AppCompatActivity()
 
         initItems()
         initCategories()
-
-
 
     }
 
@@ -78,51 +75,94 @@ class MainActivity : AppCompatActivity()
     }
 
 
-    private fun populateItemsData(): MutableList<ItemsModel>
+    private fun populateItemsData()
     {
         itemsList.add(
             ItemsModel(
-                "witeli maika",
+                "Belt suit blazer",
                 1,
-                "Maika",
+                "Party",
                 R.drawable.cisperi,
             )
         )
 
         itemsList.add(
             ItemsModel(
-                "lurji jempri",
+                "Belt suit blazer",
                 2,
-                "Jempri",
+                "Party",
                 R.drawable.witeli,
             )
         )
 
         itemsList.add(
             ItemsModel(
-                "lurji jempri",
+                "Belt suit blazer",
                 3,
-                "Jempri",
+                "All",
+                R.drawable.yviteli,
+            )
+        )
+
+        itemsList.add(
+            ItemsModel(
+                "Belt suit blazer",
+                3,
+                "Camping",
+                R.drawable.yviteli,
+            )
+        )
+        itemsList.add(
+            ItemsModel(
+                "Belt suit blazer",
+                3,
+                "Camping",
+                R.drawable.yviteli,
+            )
+        )
+        itemsList.add(
+            ItemsModel(
+                "Belt suit blazer",
+                3,
+                "Party",
                 R.drawable.yviteli,
             )
         )
 
 
 
-        return itemsList
+
     }
 
     private fun populateCategoriesData()
     {
         categoriesList.add(
             CategoriesModel(
-                "Maika",
+                "Party",
             )
         )
 
         categoriesList.add(
             CategoriesModel(
-                "Jempri",
+                "Camping",
+            )
+        )
+
+        categoriesList.add(
+            CategoriesModel(
+                "All",
+            )
+        )
+
+        categoriesList.add(
+            CategoriesModel(
+                "Summer",
+            )
+        )
+
+        categoriesList.add(
+            CategoriesModel(
+                "Winter",
             )
         )
     }
