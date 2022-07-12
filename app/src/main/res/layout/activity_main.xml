@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#22343C"
     tools:context=".MainActivity">
 
     <ScrollView
         android:id="@+id/svCategories"
+        app:layout_constraintDimensionRatio="6:1"
+        app:layout_constraintBottom_toTopOf="@id/svItems"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_chainStyle="spread">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategories"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </ScrollView>
@@ -23,17 +27,17 @@
 
     <ScrollView
         android:id="@+id/svItems"
-        android:layout_marginTop="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svCategories"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svCategories">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:padding="20dp"
             android:id="@+id/rvItems"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

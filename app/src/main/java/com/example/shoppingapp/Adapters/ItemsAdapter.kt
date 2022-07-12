@@ -4,12 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingapp.DataModels.ItemsModel
+import com.example.shoppingapp.DataModels.PartyModel
 import com.example.shoppingapp.R
 import com.example.shoppingapp.databinding.ItemsLayoutBinding
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.UsersViewHolder>() {
 
     private val itemsList = mutableListOf<ItemsModel>()
+    private val partyItemsList = mutableListOf<PartyModel>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
@@ -32,12 +34,18 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.UsersViewHolder>() {
         notifyItemRangeChanged(0,itemsList.size)
     }
 
+    fun updateParty(list1: List<PartyModel>) {
+        partyItemsList.clear()
+        partyItemsList.addAll(list1)
+        notifyItemRangeChanged(0,partyItemsList.size)
+    }
+
 
     class UsersViewHolder(val binding: ItemsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
             fun bindData(itemsModel: ItemsModel){
                 binding.tvTitle.text = itemsModel.title
-                binding.tvPrice.text = itemsModel.price.toString()
+                binding.tvPrice.text = "$${itemsModel.price}"
                 binding.ivImage.setImageResource(itemsModel.Image)
             }
 

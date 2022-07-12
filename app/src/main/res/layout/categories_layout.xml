@@ -7,11 +7,13 @@
 
     <TextView
         android:id="@+id/tvCategory"
+        android:background="@drawable/cat_bacground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="30dp"
-        android:textSize="30sp"
+        android:textSize="20sp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

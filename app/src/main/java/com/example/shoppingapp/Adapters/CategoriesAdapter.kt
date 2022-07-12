@@ -38,6 +38,8 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.UsersViewHolder
     }
 
 
+
+
     fun setOnItemCLickListener(clickListener: (CategoriesModel,Int) -> Unit) {
         itemClickListener = clickListener
     }
