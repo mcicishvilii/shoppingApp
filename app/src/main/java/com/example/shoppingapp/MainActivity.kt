@@ -1,9 +1,11 @@
 package com.example.shoppingapp
 
 import android.content.ClipData
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
@@ -18,24 +20,27 @@ class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
     private val itemsList = mutableListOf<ItemsModel>()
-    private val itemsUpdatedList = mutableListOf<ItemsModel>()
     private val categoriesList = mutableListOf<CategoriesModel>()
+    private val filteredList = mutableListOf<String>()
 
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var itemsAdapter: ItemsAdapter
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         initItems()
         initCategories()
 
-    }
 
+
+    }
 
     private fun initItems()
     {
@@ -49,16 +54,18 @@ class MainActivity : AppCompatActivity()
         binding.rvItems.adapter = itemsAdapter
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun initCategories()
+
     {
+
         categoriesAdapter = CategoriesAdapter().apply {
 
-            setOnItemCLickListener {category: CategoriesModel, i: Int ->
-                Toast.makeText(
-                    this@MainActivity,
-                    "${category.categoryName} seelected",
-                    Toast.LENGTH_SHORT
-                ).show()
+            setOnItemCLickListener { category: CategoriesModel, i: Int ->
+
+                itemsList.removeIf { it.categoryType != category.categoryName }
+                Toast.makeText(this@MainActivity,itemsList.size.toString(),Toast.LENGTH_SHORT).show()
             }
 
             populateCategoriesData()
@@ -71,8 +78,7 @@ class MainActivity : AppCompatActivity()
     }
 
 
-
-    private fun populateItemsData()
+    private fun populateItemsData(): MutableList<ItemsModel>
     {
         itemsList.add(
             ItemsModel(
@@ -101,76 +107,9 @@ class MainActivity : AppCompatActivity()
             )
         )
 
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                4,
-                "Jempri",
-                R.drawable.shavi,
-            )
-        )
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                5,
-                "Jempri",
-                R.drawable.shavi,
-            )
-        )
 
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                6,
-                "Maika",
-                R.drawable.shavi,
-            )
-        )
 
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                7,
-                "Maika",
-                R.drawable.witeli,
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                8,
-                "Maika",
-                R.drawable.witeli,
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                9,
-                "Maika",
-                R.drawable.witeli,
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                10,
-                "Maika",
-                R.drawable.witeli,
-            )
-        )
-
-        itemsList.add(
-            ItemsModel(
-                "lurji jempri",
-                11,
-                "Jempri",
-                R.drawable.witeli,
-            )
-        )
+        return itemsList
     }
 
     private fun populateCategoriesData()
