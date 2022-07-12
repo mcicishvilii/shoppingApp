@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
     private val itemsList = mutableListOf<ItemsModel>()
+    private val itemsUpdatedList = mutableListOf<ItemsModel>()
     private val categoriesList = mutableListOf<CategoriesModel>()
 
     private lateinit var categoriesAdapter: CategoriesAdapter
@@ -52,15 +53,13 @@ class MainActivity : AppCompatActivity()
     {
         categoriesAdapter = CategoriesAdapter().apply {
 
-            setOnItemCLickListener { category: CategoriesModel, i: Int ->
-
+            setOnItemCLickListener {category: CategoriesModel, i: Int ->
                 Toast.makeText(
                     this@MainActivity,
                     "${category.categoryName} seelected",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
 
             populateCategoriesData()
             updateAll(categoriesList)
