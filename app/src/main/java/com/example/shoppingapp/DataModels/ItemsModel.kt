@@ -5,5 +5,4 @@ data class ItemsModel(
     var price:Int,
     var categoryType:String,
     var Image:Int,
-    val category: List<Filters.Category>
 )

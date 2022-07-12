@@ -4,14 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingapp.DataModels.ItemsModel
-import com.example.shoppingapp.DataModels.PartyModel
-import com.example.shoppingapp.R
 import com.example.shoppingapp.databinding.ItemsLayoutBinding
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.UsersViewHolder>() {
 
     private val itemsList = mutableListOf<ItemsModel>()
-    private val partyItemsList = mutableListOf<PartyModel>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
@@ -32,12 +29,6 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.UsersViewHolder>() {
         itemsList.clear()
         itemsList.addAll(list)
         notifyItemRangeChanged(0,itemsList.size)
-    }
-
-    fun updateParty(list1: List<PartyModel>) {
-        partyItemsList.clear()
-        partyItemsList.addAll(list1)
-        notifyItemRangeChanged(0,partyItemsList.size)
     }
 
 

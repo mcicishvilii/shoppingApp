@@ -1,5 +1,6 @@
 package com.example.shoppingapp
 
+import android.content.ClipData
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,235 +11,184 @@ import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.example.shoppingapp.Adapters.CategoriesAdapter
 import com.example.shoppingapp.Adapters.ItemsAdapter
 import com.example.shoppingapp.DataModels.CategoriesModel
-import com.example.shoppingapp.DataModels.Filters
 import com.example.shoppingapp.DataModels.ItemsModel
 import com.example.shoppingapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()
+{
     private lateinit var binding: ActivityMainBinding
     private val itemsList = mutableListOf<ItemsModel>()
     private val categoriesList = mutableListOf<CategoriesModel>()
-    private var selectedProductsList = mutableListOf<ItemsModel>()
 
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var itemsAdapter: ItemsAdapter
 
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initItems(itemsList)
+        initItems()
         initCategories()
 
     }
 
 
-
-    private fun initItems(list: MutableList<ItemsModel>){
+    private fun initItems()
+    {
         itemsAdapter = ItemsAdapter().apply {
             populateItemsData()
-            updateAll(list)
+            updateAll(itemsList)
         }
 
         binding.rvItems.layoutManager =
-            GridLayoutManager(this,2,VERTICAL,false)
+            GridLayoutManager(this, 2, VERTICAL, false)
         binding.rvItems.adapter = itemsAdapter
     }
 
-    private fun initCategories(){
+    private fun initCategories()
+    {
         categoriesAdapter = CategoriesAdapter().apply {
 
             setOnItemCLickListener { category: CategoriesModel, i: Int ->
 
-                    Toast.makeText(this@MainActivity, "${category.categoryName} seelected", Toast.LENGTH_SHORT).show()
-                    itemsList.removeAt(0)
-                    initItems(itemsList)
-
+                Toast.makeText(
+                    this@MainActivity,
+                    "${category.categoryName} seelected",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+
+
             populateCategoriesData()
             updateAll(categoriesList)
         }
 
         binding.rvCategories.layoutManager =
-            LinearLayoutManager(this, HORIZONTAL,false)
+            LinearLayoutManager(this, HORIZONTAL, false)
         binding.rvCategories.adapter = categoriesAdapter
     }
 
 
 
-
-    private fun populateItemsData(){
+    private fun populateItemsData()
+    {
         itemsList.add(
             ItemsModel(
                 "witeli maika",
-                241,
-                "bebruli",
+                1,
+                "Maika",
                 R.drawable.cisperi,
-                listOf(
-                    Filters.Category.BOTTOM
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                2,
+                "Jempri",
                 R.drawable.witeli,
-                listOf(
-                    Filters.Category.SALE
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                3,
+                "Jempri",
                 R.drawable.yviteli,
-                listOf(
-                    Filters.Category.SUMMER
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                4,
+                "Jempri",
                 R.drawable.shavi,
-                listOf(
-                    Filters.Category.BOTTOM
-                )
             )
         )
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                5,
+                "Jempri",
                 R.drawable.shavi,
-                listOf(
-                    Filters.Category.BOTTOM
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                6,
+                "Maika",
                 R.drawable.shavi,
-                listOf(
-                    Filters.Category.BOTTOM
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                7,
+                "Maika",
                 R.drawable.witeli,
-                listOf(
-                    Filters.Category.SALE
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                8,
+                "Maika",
                 R.drawable.witeli,
-                listOf(
-                    Filters.Category.SALE
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                9,
+                "Maika",
                 R.drawable.witeli,
-                listOf(
-                    Filters.Category.SALE
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                10,
+                "Maika",
                 R.drawable.witeli,
-                listOf(
-                    Filters.Category.SALE
-                )
             )
         )
 
         itemsList.add(
             ItemsModel(
                 "lurji jempri",
-                23,
-                "bebruli",
+                11,
+                "Jempri",
                 R.drawable.witeli,
-                listOf(
-                    Filters.Category.SALE
-                )
             )
         )
     }
-    private fun populateCategoriesData(){
+
+    private fun populateCategoriesData()
+    {
         categoriesList.add(
             CategoriesModel(
-                "All",
+                "Maika",
             )
         )
 
         categoriesList.add(
             CategoriesModel(
-                "Party",
+                "Jempri",
             )
         )
-
-        categoriesList.add(
-            CategoriesModel(
-                "Camping",
-            )
-        )
-
-        categoriesList.add(
-            CategoriesModel(
-                "pants",
-            )
-        )
-
-        categoriesList.add(
-            CategoriesModel(
-                "tshirts",
-            )
-        )
-        categoriesList.add(
-            CategoriesModel(
-                "Category3",
-            )
-        )
-
     }
 }
+
+
+
